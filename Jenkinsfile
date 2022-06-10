@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/sahoob/onlineBook.git'
+        git branch: 'main', url: 'https://github.com/sahoob/onlineBook.git'
       }
     }
     stage('Compile Package and Create war file') {
