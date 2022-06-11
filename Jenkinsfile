@@ -11,18 +11,25 @@ stage('Compile Package and Create war file'){
 }
 
 stage('build docker Image') {
-      sh 'docker build -t khoka2020/onlinebook:1.0.0 .'
+      sh 'docker build -t khoka2020/onlineBook:1.0.0 .'
 
 }
 
 stage('push docker Image'){
 
 withCredentials([usernamePassword(credentialsId: '0960f87c-4cda-4448-aa33-e144908b1d2f', passwordVariable: 'docker_pwd', usernameVariable: 'docker_uname')]) {
-    sh "docker login --username ${docker_uname} --password ${docker_pwd}"
+    sh "docker login -u ${docker_uname} -p ${docker_pwd}"
 }
 
    sh 'docker push khoka2020/onlinebook:1.0.0'
 
 
+}
+stage('run docker container'){
+
+def dockerRun = 'docker run -p 8085:8085 -d --name onlinebook khoka2020/onlinebook:1.0.0'
+sshagent(['userid']) {
+    sh "ssh -o StrictHostKeyChecking=no vm-bs-test1@20.70.162.219 ${dockerRun}"
+}
 }
 }
