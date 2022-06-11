@@ -11,7 +11,7 @@ stage('Compile Package and Create war file'){
 }
 
 stage('build docker Image') {
-      sh 'docker build -t khoka2020/onlineBook:1.0.0 .'
+      sh 'docker build -t khoka2020/onlinebook:1.0.0 .'
 
 }
 
