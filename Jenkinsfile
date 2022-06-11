@@ -9,8 +9,9 @@ pipeline {
     }
     stage('Compile Package and Create war file') {
       steps {
-        
-        sh '/opt/apache-maven-3.8.5/bin/mvn clean install package'
+         def mvnHome= tool name: 'MAVEN3', type: 'maven'
+         def setHomepath="{$mvnHome}/bin/mvn"
+         sh "{$setHomePath} clean install package"
       
       }
     }
