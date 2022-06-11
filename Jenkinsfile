@@ -10,8 +10,8 @@ pipeline {
     stage('Compile Package and Create war file') {
       steps {
          def mvnHome= tool name: 'MAVEN3', type: 'maven'
-         def setHomepath="{$mvnHome}/bin/mvn"
-         sh "{$setHomePath} clean install package"
+         def setHomepath= "${mvnHome}/bin/mvn"
+         sh "${setHomePath} clean install package"
       
       }
     }
