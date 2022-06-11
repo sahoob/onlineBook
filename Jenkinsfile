@@ -10,7 +10,7 @@ pipeline {
     stage('Compile Package and Create war file') {
       steps {
          
-        sh 'mvn clean install package'
+        sh "'${M2_HOME}/bin/mvn' clean install package"
       
       }
     }
