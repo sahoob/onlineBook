@@ -27,9 +27,7 @@ withCredentials([usernamePassword(credentialsId: '0960f87c-4cda-4448-aa33-e14490
 }
 stage('run docker container'){
 
-def dockerRun = 'docker run -p 8085:8085 -d --name onlinebook khoka2020/onlinebook:1.0.0'
-sshagent(['userid']) {
-    sh "ssh -o StrictHostKeyChecking=no vm-bs-test1@20.70.162.219 ${dockerRun}"
-}
+sh 'docker run -p 8085:8085 -d --name onlinebook khoka2020/onlinebook:1.0.0'
+
 }
 }
