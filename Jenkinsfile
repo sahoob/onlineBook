@@ -9,7 +9,9 @@ pipeline {
     }
     stage('Compile Package and Create war file') {
       steps {
-        sh "mvn package"
+         withMaven(maven : 'ápache-maven-3.8.5'){
+        sh "mvn clean install package"
+         }
       }
     }
    
