@@ -9,8 +9,8 @@ pipeline {
     }
     stage('Compile Package and Create war file') {
       steps {
-         
-        sh "'${M2_HOME}/bin/mvn' clean install package"
+        def mvnhome= tool 'M2_HOME'
+        sh "${mvnhome}/bin/mvn clean install package"
       
       }
     }
